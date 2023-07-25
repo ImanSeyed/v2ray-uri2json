@@ -9,5 +9,4 @@ install_path="/usr/local/bin"
 mkdir -p "$install_path"
 chmod +x scripts/*.sh
 cp -v scripts/*.sh "$install_path/"
-cd "$install_path" || exit
 echo "Installation completed. Scripts are available in: $install_path"
