@@ -2,6 +2,7 @@
 Before using the URI to JSON scripts, ensure you have the following softwares installed:
 - `jq`
 - `base64` (coreutils)
+- `awk`
 
 # TODO
 - [x] Add support for vless URIs
