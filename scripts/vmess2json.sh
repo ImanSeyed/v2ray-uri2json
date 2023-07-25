@@ -1,11 +1,7 @@
 #!/bin/bash
 
-if [ -z $1 ]; then
-        echo "URI as an argument is required."
-        exit 1
-fi
+source "$(dirname "$0")/main.sh"
 
-URL=$1
 if ! echo "$URL" | grep -Eo 'vmess://[^/]+' > /dev/null; then
 	echo "vmess: Invalid URI scheme."
 	exit 1
@@ -29,8 +25,6 @@ SNI=$(echo "$JSON_DATA" | jq -r .sni)
 TLS=$(echo "$JSON_DATA" | jq -r  .tls)
 TYPE=$(echo "$JSON_DATA" | jq -r .type)
 V=$(echo "$JSON_DATA" | jq -r .v)
-SOCKS5_PROXY_PORT=10808
-HTTP_PROXY_PORT=10809
 
 source "$(dirname "$0")/stream-settings.sh"
 

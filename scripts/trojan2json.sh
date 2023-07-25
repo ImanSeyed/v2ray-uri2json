@@ -1,11 +1,7 @@
 #!/bin/bash
 
-if [ -z $1 ]; then
-	echo "URI as an argument is required."
-	exit 1
-fi
+source "$(dirname "$0")/main.sh"
 
-URL=$1
 if ! echo "$URL" | grep -Eo 'trojan://[^/]+' > /dev/null; then
 	echo "trojan: Invalid URI scheme."
 	exit 1
@@ -19,8 +15,6 @@ REMARKS=$(echo $PARSE_ME | awk -F '[#]' '{print $2}')
 PASSWORD=$(echo $PARSE_ME | awk -F '[@?=&#]' '{print $1}')
 SERVER_ADDRESS=$(echo $PARSE_ME | awk -F '[@:?=&#]' '{print $2}')
 SERVER_PORT=$(echo $PARSE_ME | awk -F '[@:?=&#]' '{print $3}')
-SOCKS5_PROXY_PORT=10808
-HTTP_PROXY_PORT=10809
 
 eval $(echo $QUERY | awk -F '&' '{
         for(i=1;i<=NF;i++) {

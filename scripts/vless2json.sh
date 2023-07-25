@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ -z $1 ];then
-	echo "URI as an argument is required."
-	exit 1
-fi
-
-URL="$1"
+source "$(dirname "$0")/main.sh"
 
 if ! echo "$URL" | grep -Eo 'vless://[^/]+' > /dev/null; then
 	echo "vless: Invalid URI scheme."
@@ -18,8 +13,6 @@ USER_ID=$(echo $PARSE_ME | awk -F'[@:?]' '{print $1}')
 SERVER_ADDRESS=$(echo $PARSE_ME | awk -F'[@:?]' '{print $2}')
 SERVER_PORT=$(echo $PARSE_ME | awk -F'[@:?]' '{print $3}')
 REMARKS=$(echo $PARSE_ME | awk -F '[#]' '{print $2}') 
-SOCKS5_PROXY_PORT=10808
-HTTP_PROXY_PORT=10809
 TLS=tls
 
 eval $(echo $QUERY | awk -F '&' '{                        
