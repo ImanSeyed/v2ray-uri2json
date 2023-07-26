@@ -1,13 +1,13 @@
 #!/bin/bash
 
-source "$(dirname "$0")/options.sh"
+source "$(dirname "$0")/lib/options.sh"
 
 if ! echo "$URL" | grep -Eo 'trojan://[^/]+' > /dev/null; then
 	echo "trojan: Invalid URI scheme."
 	exit 1
 fi
 
-source "$(dirname "$0")/stream-settings.sh"
+source "$(dirname "$0")/lib/stream-settings.sh"
 
 PARSE_ME=$(echo "$URL" | awk -F'://' '{print $2}')
 QUERY=$(echo "$PARSE_ME" | awk -F '[?#]' '{print $2}')

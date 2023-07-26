@@ -29,7 +29,7 @@ $ bash scripts/trojan2json.sh --http-proxy 1080 --socks5-proxy 1090 <URI>
 ```
 Run the command below to display all options:
 ```shell
-$ bash scripts/options.sh -h
+$ bash scripts/lib/options.sh -h
 ```
 2. Execute the Xray or V2ray with the generated configuration in your current directory:
 ```shell

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(dirname "$0")/options.sh"
+source "$(dirname "$0")/lib/options.sh"
 
 if ! echo "$URL" | grep -Eo 'vless://[^/]+' > /dev/null; then
 	echo "vless: Invalid URI scheme."
@@ -30,7 +30,7 @@ SNI="$sni"
 FLOW="$flow"
 ALPN="$alpn"
 
-source "$(dirname "$0")/stream-settings.sh"
+source "$(dirname "$0")/lib/stream-settings.sh"
 
 if [ "$NET_TYPE" == "tcp" ]; then
         STREAM_SETTINGS=$(gen_tcp)
