@@ -9,7 +9,7 @@ Before using the URI to JSON scripts, ensure you have the following softwares in
 - [x] Add support for vmess URIs
 - [x] Add support for trojan URIs
 - [x] Add a switch for setting SOCKS5 and HTTP proxy ports to bind
-- [ ] Add a switch for setting config.json path
+- [x] Add a switch for setting config.json directory
 - [ ] Add support for gRPC
 
 # Usage
@@ -26,6 +26,10 @@ Or with custom proxy settings:
 $ bash scripts/vmess2json.sh --http-proxy 1080 --socks5-proxy 1090 <URI>
 $ bash scripts/vless2json.sh --http-proxy 1080 --socks5-proxy 1090 <URI>
 $ bash scripts/trojan2json.sh --http-proxy 1080 --socks5-proxy 1090 <URI>
+```
+Run the command below to display all options:
+```shell
+$ bash scripts/main.sh -h
 ```
 2. Execute the Xray or V2ray with the generated configuration in your current directory:
 ```shell
