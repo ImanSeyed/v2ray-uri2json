@@ -9,6 +9,7 @@ display_help() {
   echo "Options:"
   echo "  --http-proxy PORT   Set the HTTP proxy to the specified PORT"
   echo "  --socks5-proxy PORT Set the SOCKS5 proxy to the specified PORT"
+  echo "  -d, --directory     Set the config.json directory"
   echo "  -h, --help          Show this help message and exit"
   exit 1
 }
@@ -34,6 +35,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     -h|--help)
       display_help
+      ;;
+    -d|--directory)
+      DIR_PATH="${2%/}"
+      shift 2
       ;;
     *)
       if [ -z "$URL" ]; then
