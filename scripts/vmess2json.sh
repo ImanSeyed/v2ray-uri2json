@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(dirname "$0")/options.sh"
+source "$(dirname "$0")/lib/options.sh"
 
 if ! echo "$URL" | grep -Eo 'vmess://[^/]+' > /dev/null; then
 	echo "vmess: Invalid URI scheme."
@@ -26,7 +26,7 @@ TLS=$(echo "$JSON_DATA" | jq -r  .tls)
 TYPE=$(echo "$JSON_DATA" | jq -r .type)
 V=$(echo "$JSON_DATA" | jq -r .v)
 
-source "$(dirname "$0")/stream-settings.sh"
+source "$(dirname "$0")/lib/stream-settings.sh"
 
 if [ "$NET_TYPE" == "tcp" ]; then
         STREAM_SETTINGS=$(gen_tcp)
