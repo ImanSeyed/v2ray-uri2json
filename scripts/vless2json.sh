@@ -7,35 +7,36 @@ if ! echo "$URL" | grep -Eo 'vless://[^/]+' > /dev/null; then
 	exit 1
 fi
 
-PARSE_ME=$(echo $URL | awk -F'://' '{print $2}')
-QUERY=$(echo $PARSE_ME | awk -F '[?#]' '{print $2}')
-USER_ID=$(echo $PARSE_ME | awk -F'[@:?]' '{print $1}')
-SERVER_ADDRESS=$(echo $PARSE_ME | awk -F'[@:?]' '{print $2}')
-SERVER_PORT=$(echo $PARSE_ME | awk -F'[@:?]' '{print $3}')
-REMARKS=$(echo $PARSE_ME | awk -F '[#]' '{print $2}') 
+PARSE_ME=$(echo "$URL" | awk -F'://' '{print $2}')
+QUERY=$(echo "$PARSE_ME" | awk -F '[?#]' '{print $2}')
+USER_ID=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $1}')
+SERVER_ADDRESS=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $2}')
+SERVER_PORT=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $3}')
+REMARKS=$(echo "$PARSE_ME" | awk -F '[#]' '{print $2}')
 TLS=tls
 
-eval $(echo $QUERY | awk -F '&' '{                        
-        for(i=1;i<=NF;i++) {                              
-                print $i                                  
-        }                                                 
-}')
-NET_TYPE=$type
-TLS=$security
-ENCRYPTION=$encryption
-HEADER_TYPE=$headerType
-FINGERPRINT=$fp
-SNI=$sni
-FLOW=$flow
-ALPN=$alpn
+eval "$(echo "$QUERY" | awk -F '&' '{
+        for(i=1;i<=NF;i++) {
+                print $i
+        }
+}')"
+
+NET_TYPE="$type"
+TLS="$security"
+ENCRYPTION="$encryption"
+HEADER_TYPE="$headerType"
+FINGERPRINT="$fp"
+SNI="$sni"
+FLOW="$flow"
+ALPN="$alpn"
 
 source "$(dirname "$0")/stream-settings.sh"
 
-if [ $NET_TYPE == "tcp" ]; then
+if [ "$NET_TYPE" == "tcp" ]; then
         STREAM_SETTINGS=$(gen_tcp)
-elif [ $NET_TYPE == "ws" ]; then
+elif [ "$NET_TYPE" == "ws" ]; then
         STREAM_SETTINGS=$(gen_ws)
-elif [ $NET_TYPE == "quic" ]; then
+elif [ "$NET_TYPE" == "quic" ]; then
         STREAM_SETTINGS=$(gen_quic)
 else
         echo "Unsupported network type! Supported net types: (tcp | quic | ws)."

@@ -9,33 +9,33 @@ fi
 
 source "$(dirname "$0")/stream-settings.sh"
 
-PARSE_ME=$(echo $URL | awk -F'://' '{print $2}')
-QUERY=$(echo $PARSE_ME | awk -F '[?#]' '{print $2}')
-REMARKS=$(echo $PARSE_ME | awk -F '[#]' '{print $2}')
-PASSWORD=$(echo $PARSE_ME | awk -F '[@?=&#]' '{print $1}')
-SERVER_ADDRESS=$(echo $PARSE_ME | awk -F '[@:?=&#]' '{print $2}')
-SERVER_PORT=$(echo $PARSE_ME | awk -F '[@:?=&#]' '{print $3}')
+PARSE_ME=$(echo "$URL" | awk -F'://' '{print $2}')
+QUERY=$(echo "$PARSE_ME" | awk -F '[?#]' '{print $2}')
+REMARKS=$(echo "$PARSE_ME" | awk -F '[#]' '{print $2}')
+PASSWORD=$(echo "$PARSE_ME" | awk -F '[@?=&#]' '{print $1}')
+SERVER_ADDRESS=$(echo "$PARSE_ME" | awk -F '[@:?=&#]' '{print $2}')
+SERVER_PORT=$(echo "$PARSE_ME" | awk -F '[@:?=&#]' '{print $3}')
 
-eval $(echo $QUERY | awk -F '&' '{
+eval "$(echo $QUERY | awk -F '&' '{
         for(i=1;i<=NF;i++) {
-		print $i
-	}
-}')
+		      print $i
+	      }
+}')"
 
-NET_TYPE=$type
-ALPN=$alpn
-FINGERPRINT=$fp
-SNI=$sni
-SECURITY=$security
-TLS=$security
-HEADER_TYPE=$headerType
+NET_TYPE="$type"
+ALPN="$alpn"
+FINGERPRINT="$fp"
+SNI="$sni"
+SECURITY="$security"
+TLS="$security"
+HEADER_TYPE="$headerType"
 USER_METHOD="chacha20-poly1305"
 
-if [ $NET_TYPE == "tcp" ]; then
+if [ "$NET_TYPE" == "tcp" ]; then
 	STREAM_SETTINGS=$(gen_tcp)
-elif [ $NET_TYPE == "ws" ]; then
+elif [ "$NET_TYPE" == "ws" ]; then
 	STREAM_SETTINGS=$(gen_ws)
-elif [ $NET_TYPE == "quic" ]; then
+elif [ "$NET_TYPE" == "quic" ]; then
 	STREAM_SETTINGS=$(gen_quic)
 else
 	echo "Unsupported network type! Supported net types: (tcp | quic | ws)."
