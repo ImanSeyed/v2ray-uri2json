@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -z $SECURITY ] && [ $SECURITY == "auto" ]; then
+if [ ! -z "$SECURITY" ] && [ "$SECURITY" == "auto" ]; then
 	SECURITY=$TLS
 fi
 

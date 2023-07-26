@@ -7,8 +7,8 @@ if ! echo "$URL" | grep -Eo 'vmess://[^/]+' > /dev/null; then
 	exit 1
 fi
 
-DECODE_ME=$(echo $URL | awk -F'://' '{ print $2 }')
-JSON_DATA=$(echo $DECODE_ME | base64 -d || exit 1)
+DECODE_ME=$(echo "$URL" | awk -F'://' '{ print $2 }')
+JSON_DATA=$(echo "$DECODE_ME" | base64 -d || exit 1)
 
 SERVER_ADDRESS=$(echo "$JSON_DATA" | jq -r .add)
 ALTER_ID=$(echo "$JSON_DATA" | jq -r .aid)
@@ -28,11 +28,11 @@ V=$(echo "$JSON_DATA" | jq -r .v)
 
 source "$(dirname "$0")/stream-settings.sh"
 
-if [ $NET_TYPE == "tcp" ]; then
+if [ "$NET_TYPE" == "tcp" ]; then
         STREAM_SETTINGS=$(gen_tcp)
-elif [ $NET_TYPE == "ws" ]; then
+elif [ "$NET_TYPE" == "ws" ]; then
         STREAM_SETTINGS=$(gen_ws)
-elif [ $NET_TYPE == "quic" ]; then
+elif [ "$NET_TYPE" == "quic" ]; then
         STREAM_SETTINGS=$(gen_quic)
 else
         echo "Unsupported network type! Supported net types: (tcp | quic | ws)."
