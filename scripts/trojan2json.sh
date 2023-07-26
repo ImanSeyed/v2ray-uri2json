@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(dirname "$0")/main.sh"
+source "$(dirname "$0")/options.sh"
 
 if ! echo "$URL" | grep -Eo 'trojan://[^/]+' > /dev/null; then
 	echo "trojan: Invalid URI scheme."
