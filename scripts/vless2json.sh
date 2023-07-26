@@ -42,7 +42,7 @@ else
         exit 1
 fi
 
-cat <<EOF > config.json
+cat <<EOF > "$DIR_PATH/config.json"
 {
   "dns": {
     "hosts": {
