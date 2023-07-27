@@ -37,8 +37,10 @@ elif [ "$NET_TYPE" == "ws" ]; then
 	STREAM_SETTINGS=$(gen_ws)
 elif [ "$NET_TYPE" == "quic" ]; then
 	STREAM_SETTINGS=$(gen_quic)
+elif [ "$NET_TYPE" == "grpc" ]; then
+  STREAM_SETTINGS=$(gen_grpc)
 else
-	echo "Unsupported network type! Supported net types: (tcp | quic | ws)."
+	echo "Unsupported network type! Supported net types: (tcp | quic | ws | grpc)."
 	exit 1
 fi
 
