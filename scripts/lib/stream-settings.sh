@@ -68,3 +68,15 @@ gen_quic() {
    }
 },\n' "$SECURITY" "$tls_settings" "$HEADER_TYPE"
 }
+
+gen_grpc() {
+  tls_settings=$(gen_tls)
+  printf '{
+    "network": "grpc",
+    "security": "%s",
+    %s
+    "grpcSettings": {
+      "serviceName": "%s"
+    }
+},\n' "$SECURITY" "$tls_settings" "$SETTINGS_PATH"
+}
