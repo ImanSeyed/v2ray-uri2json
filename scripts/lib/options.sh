@@ -37,7 +37,7 @@ while [[ $# -gt 0 ]]; do
       display_help
       ;;
     -d|--directory)
-      DIR_PATH="${2%/}"
+      PREFIX_DIR="${2%/}/"
       shift 2
       ;;
     *)
