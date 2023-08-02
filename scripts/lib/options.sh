@@ -10,7 +10,7 @@ display_help() {
   echo "  --http-proxy PORT   Set the HTTP proxy to the specified PORT"
   echo "  --socks5-proxy PORT Set the SOCKS5 proxy to the specified PORT"
   echo "  --allow-insecure    Set allowInsecure to true"
-  echo "  -d, --directory     Set the config.json directory"
+  echo "  -d, --directory DIR Set the config.json directory to the specified DIR"
   echo "  -h, --help          Show this help message and exit"
   exit 1
 }
