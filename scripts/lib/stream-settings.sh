@@ -4,6 +4,10 @@ if [ ! -z "$SECURITY" ] && [ "$SECURITY" == "auto" ]; then
 	SECURITY=$TLS
 fi
 
+if [ -z "$ALLOW_INSECURE" ]; then
+	ALLOW_INSECURE=false
+fi
+
 gen_tls() {
 
   if [ ! -z "$ALPN" ]; then
@@ -12,12 +16,12 @@ gen_tls() {
 
   if [ ! -z "$TLS" ] && [ "$TLS" == "tls" ]; then
     printf '"tlsSettings": {
-        "allowInsecure": false,
+        "allowInsecure": %s,
 	%s
         "fingerprint": "%s",
         "serverName": "%s",
         "show": false
-    },' "$ALPN" "$FINGERPRINT" "$SNI"
+    },' "$ALLOW_INSECURE" "$ALPN" "$FINGERPRINT" "$SNI"
   fi
 }
 
