@@ -9,6 +9,7 @@ display_help() {
   echo "Options:"
   echo "  --http-proxy PORT   Set the HTTP proxy to the specified PORT"
   echo "  --socks5-proxy PORT Set the SOCKS5 proxy to the specified PORT"
+  echo "  --allow-insecure    Set allowInsecure to true"
   echo "  -d, --directory     Set the config.json directory"
   echo "  -h, --help          Show this help message and exit"
   exit 1
@@ -33,6 +34,10 @@ while [[ $# -gt 0 ]]; do
       SOCKS5_PROXY_PORT="$2"
       shift 2
       ;;
+    --allow-insecure)
+      ALLOW_INSECURE="true"
+      shift 1
+      ;;
     -h|--help)
       display_help
       ;;
@@ -45,7 +50,6 @@ while [[ $# -gt 0 ]]; do
         URL="$1"
         shift
       else
-        echo "Invalid argument: $1" >&2
         display_help
       fi
       ;;
