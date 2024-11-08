@@ -45,7 +45,7 @@ else
 	exit 1
 fi
 
-cat <<EOF > "${PREFIX_DIR}config.json"
+jq . <<EOF > "${PREFIX_DIR}config.json"
 {
   "dns": {
     "hosts": {
