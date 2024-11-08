@@ -28,7 +28,7 @@ FINGERPRINT="$fp"
 SNI="$sni"
 SECURITY="$security"
 TLS="$security"
-HEADER_TYPE="$headerType"
+HEADER_TYPE=${headerType:-none}
 USER_METHOD="chacha20-poly1305"
 
 if [ "$NET_TYPE" == "tcp" ]; then
