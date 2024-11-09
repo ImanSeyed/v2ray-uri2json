@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -z "$SECURITY" ] && [ "$SECURITY" == "auto" ]; then
+if [ "$SECURITY" == "auto" ]; then
 	SECURITY=$TLS
 fi
 
@@ -14,7 +14,7 @@ gen_tls() {
 	ALPN="\"alpn\": [ \"$ALPN\" ],"
   fi
 
-  if [ ! -z "$TLS" ] && [ "$TLS" == "tls" ]; then
+  if [ "$TLS" == "tls" ]; then
     printf '"tlsSettings": {
         "allowInsecure": %s,
 	%s
