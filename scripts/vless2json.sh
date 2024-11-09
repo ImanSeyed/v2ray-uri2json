@@ -13,7 +13,6 @@ USER_ID=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $1}')
 SERVER_ADDRESS=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $2}')
 SERVER_PORT=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $3}')
 REMARKS=$(echo "$PARSE_ME" | awk -F '[#]' '{print $2}')
-TLS=tls
 
 eval "$(echo "$QUERY" | awk -F '&' '{
         for(i=1;i<=NF;i++) {
