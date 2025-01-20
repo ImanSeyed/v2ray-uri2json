@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source "$(dirname "$0")/lib/options.sh"
+function urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
 
 if ! echo "$URL" | grep -Eo 'vless://[^/]+' > /dev/null; then
 	echo "vless: Invalid URI scheme."
@@ -29,6 +30,10 @@ SNI="$sni"
 FLOW="$flow"
 ALPN="$alpn"
 HEADERS_HOST="$host"
+SETTINGS_PATH=$(urldecode "$path")
+if [ -z "${SETTINGS_PATH}" ]; then
+  SETTINGS_PATH=$(urldecode "$serviceName")
+fi
 
 source "$(dirname "$0")/lib/stream-settings.sh"
 
