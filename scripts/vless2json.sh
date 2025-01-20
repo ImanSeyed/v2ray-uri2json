@@ -28,6 +28,7 @@ FINGERPRINT="$fp"
 SNI="$sni"
 FLOW="$flow"
 ALPN="$alpn"
+HEADERS_HOST="$host"
 
 source "$(dirname "$0")/lib/stream-settings.sh"
 
