@@ -31,7 +31,7 @@ SID="$sid"
 SPX=$(urldecode "$spx")
 PUBLICKEY="$pbk"
 FLOW="$flow"
-ALPN="$alpn"
+ALPN=$(urldecode "$alpn")
 HEADERS_HOST="$host"
 SETTINGS_PATH=$(urldecode "$path")
 if [ -z "${SETTINGS_PATH}" ]; then
