@@ -11,7 +11,7 @@ PARSE_ME=$(echo "$URL" | awk -F'://' '{print $2}')
 QUERY=$(echo "$PARSE_ME" | awk -F '[?#]' '{print $2}')
 USER_ID=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $1}')
 SERVER_ADDRESS=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $2}')
-SERVER_PORT=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $3}')
+SERVER_PORT=$(echo "$PARSE_ME" | awk -F'[@:?]' '{print $3}' | sed 's/[^0-9]*//g')
 REMARKS=$(echo "$PARSE_ME" | awk -F '[#]' '{print $2}')
 
 eval "$(echo "$QUERY" | awk -F '&' '{
