@@ -90,6 +90,10 @@ gen_grpc() {
     "security": "%s",
     %s
     "grpcSettings": {
+    	"authority": "",
+			"health_check_timeout": 20,
+			"idle_timeout": 60,
+			"multiMode": false,
       "serviceName": "%s"
     }
 },\n' "$SECURITY" "$tls_settings" "$SETTINGS_PATH"
