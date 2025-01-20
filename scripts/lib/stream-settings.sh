@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$SECURITY" == "auto" ]; then
+if [[ "$SECURITY" == "auto" || "$TLS" == "reality" ]]; then
 	SECURITY=$TLS
 fi
 
@@ -22,6 +22,16 @@ gen_tls() {
         "serverName": "%s",
         "show": false
     },' "$ALLOW_INSECURE" "$ALPN" "$FINGERPRINT" "$SNI"
+  elif [ "$TLS" == "reality" ]; then
+    printf '"realitySettings": {
+        "allowInsecure": false,
+        "fingerprint": "%s",
+        "publicKey": "%s",
+        "serverName": "%s",
+        "shortId": "%s",
+        "show": false,
+        "spiderX": "%s"
+    },\n' "$FINGERPRINT" "$PUBLICKEY" "$SNI" "$SID" "$SPX"
   fi
 }
 
@@ -80,6 +90,10 @@ gen_grpc() {
     "security": "%s",
     %s
     "grpcSettings": {
+    	"authority": "",
+			"health_check_timeout": 20,
+			"idle_timeout": 60,
+			"multiMode": false,
       "serviceName": "%s"
     }
 },\n' "$SECURITY" "$tls_settings" "$SETTINGS_PATH"
