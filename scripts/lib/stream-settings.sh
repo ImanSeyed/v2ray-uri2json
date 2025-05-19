@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ "$SECURITY" == "auto" || "$TLS" == "reality" || "$TLS" == "tls" ]]; then
+if [[ "$SECURITY" == "auto" ]]; then
 	SECURITY=$TLS
 fi
 
