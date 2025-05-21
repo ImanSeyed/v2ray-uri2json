@@ -23,6 +23,7 @@ eval "$(echo "$QUERY" | awk -F '&' '{
 
 NET_TYPE="$type"
 TLS="$security"
+SECURITY="$security"
 ENCRYPTION=${encryption:-none}
 HEADER_TYPE=${headerType:-none}
 FINGERPRINT="$fp"
